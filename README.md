@@ -37,12 +37,12 @@ This is a simple Node.js-based user management system that allows users to regis
 
 ## File Structure
 
-- `user.js`: A class defining the structure for a user with a username and password.
-- `users.js`: Contains functions to manage the user list (add users and retrieve the list).
-- `registerUser.js`: Function to handle new user registration, with validation for username and password requirements.
-- `login.js`: Function to handle user login by verifying the username and password.
-- `changePassword.js`: Function to allow users to change their password with validation.
-- `menu.js`: Main script that presents a menu to interact with the system, allowing users to register, log in, or change passwords.
+- `src/user.js`: A class defining the structure for a user with a username and password.
+- `src/users.js`: Contains functions to manage the user list (add users and retrieve the list).
+- `src/registerUser.js`: Function to handle new user registration, with validation for username and password requirements.
+- `src/login.js`: Function to handle user login by verifying the username and password.
+- `src/changePassword.js`: Function to allow users to change their password with validation.
+- `src/menu.js`: Main script that presents a menu to interact with the system, allowing users to register, log in, or change passwords.
 - `src/main.js`: Entry point for the program, where the menu is displayed and the system is run.
 
 ## How It Works
