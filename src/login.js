@@ -8,7 +8,7 @@ function userLogin(username, password) {
   );
 
   if (userMatch) {
-    return false;
+    return true;
   } else {
     return "Error logging in.";
   }
