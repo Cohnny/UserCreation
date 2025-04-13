@@ -17,7 +17,7 @@ function showMenu() {
     switch (choice) {
       case 1:
         const loginUsername = prompt("Username: ");
-        const loginPassword = prompt("Password: ");
+        //const loginPassword = prompt("Password: ");
         const loginUser = userLogin(loginUsername, loginPassword);
 
         if (loginUser == true) {
