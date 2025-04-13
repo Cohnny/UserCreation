@@ -5,6 +5,7 @@ const userLogin = require("./login");
 const changePassword = require("./changePassword");
 
 function showMenu() {
+  console.log("TESTING GIT ACTIONS");
   while (true) {
     console.log("\n1. Login");
     console.log("2. Register User");
