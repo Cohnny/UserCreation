@@ -1,51 +1,63 @@
-const readline = require("readline")
-const User = require("./user")
+const prompt = require("prompt-sync")();
+const registerUser = require("./registerUser");
+const { addUser } = require("./users");
+const userLogin = require("./login");
+const changePassword = require("./changePassword");
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+function showMenu() {
+  while (true) {
+    console.log("\n1. Login");
+    console.log("2. Register User");
+    console.log("3. Change Password");
+    console.log("0. Exit");
 
-let usersList = [];
+    const choice = parseInt(prompt("Enter choice (1-3 or 0 to exit): "));
 
-const user1 = new User("John", "123");
-const user2 = new User("Jane", "321");
+    switch (choice) {
+      case 1:
+        const loginUsername = prompt("Username: ");
+        const loginPassword = prompt("Password: ");
+        const loginUser = userLogin(loginUsername, loginPassword);
 
-usersList.push(user1);
-usersList.push(user2);
-
-const menu =
-    "Menu\n" +
-    "1. Login\n" +
-    "2. Register User\n" +
-    "3. Change Password\n" +
-    "0. Exit";
-
-const getUserInput = () => {
-    console.log(menu);
-    rl.question("Input a number (1-3 or 0 to exit): ", (userInput) => {
-        const choice = parseInt(userInput);
-
-        switch (choice) {
-            case 1:
-                console.log("Login");
-                break;
-            case 2:
-                console.log("Register User");
-                break;
-            case 3:
-                console.log("Change Password");
-                break;
-            case 0:
-                console.log("Exiting...")
-                rl.close();
-                return;
-            default:
-                console.log("Invalid input, please select a number 1-3 or 0 to exit.");
+        if (loginUser == true) {
+          console.log("Logged in successfully.");
+        } else {
+          console.log(loginUser);
         }
-        console.log()
-        getUserInput();
-    });
-};
+        break;
+      case 2:
+        const registerUsername = prompt("Username: ");
+        const registerPassword = prompt("Password: ");
 
-getUserInput();
+        const registeredUser = registerUser(registerUsername, registerPassword);
+
+        if (typeof registeredUser === "string") {
+          console.log(registeredUser);
+        } else {
+          addUser(registeredUser);
+          console.log("User registered.");
+        }
+        break;
+      case 3:
+        const username = prompt("Username: ");
+        const oldPassword = prompt("Password: ");
+        const newPassword = prompt("New password: ");
+        const change = changePassword(username, oldPassword, newPassword);
+
+        if (change == true) {
+          console.log("Password changed successfully.");
+        } else {
+          console.log(change);
+        }
+
+        break;
+      case 0:
+        console.log("Exiting...");
+        process.exit(0);
+      default:
+        console.log("Invalid input, please select a number 1-3 or 0 to exit.");
+    }
+  }
+}
+
+showMenu();
